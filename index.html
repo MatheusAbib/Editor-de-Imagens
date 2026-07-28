@@ -1,235 +1,234 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Editor de Imagem</title>
-  <link rel="icon" type="image/png" href="imagem.png">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Imagem</title>
+    <link rel="icon" type="image/png" href="imagem.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="master-container">
-    <header class="corporate-header">
-      <div class="title-decoration">
-        <div class="line"></div>
-        <i class="bi bi-magic" style="font-size: 1.5rem; color: var(--correios-yellow);"></i>
-        <div class="line"></div>
-      </div>
-      <h1>Editor de Imagem</h1>
-      <div class="author-badge">
-        Desenvolvido por <a href="https://matheus-abib-portfolio.netlify.app/" target="_blank">Matheus Abib</a>
-      </div>
-    </header>
+    <div class="master-container">
+        <header class="corporate-header">
+            <div class="title-decoration">
+                <div class="line"></div>
+                <i class="bi bi-magic" style="font-size: 1.5rem; color: var(--correios-yellow);"></i>
+                <div class="line"></div>
+            </div>
+            <h1>Editor de Imagem</h1>
+            <div class="author-badge">
+                Desenvolvido por <a href="https://matheus-abib-portfolio.netlify.app/" target="_blank">Matheus Abib</a>
+            </div>
+        </header>
 
-    <div class="main-content">
-      <div class="paper-clip top"></div>
-      <div class="paper-clip left"></div>
+        <div class="main-content">
+            <div class="paper-clip top"></div>
+            <div class="paper-clip left"></div>
 
-      <div class="upload-section">
-        <div class="upload-area-premium" id="uploadArea">
-          <div class="upload-icon-container">
-            <i class="bi bi-cloud-arrow-up-fill"></i>
-          </div>
-          <div class="upload-text-premium">Arraste e Solte Sua Imagem Aqui</div>
-          <div class="upload-hint-premium">Clique para selecionar (Formatos: JPG, PNG, WEBP • Máx: 15MB)</div>
+            <div class="upload-section">
+                <div class="upload-area-premium" id="uploadArea">
+                    <div class="upload-icon-container">
+                        <i class="bi bi-cloud-arrow-up-fill"></i>
+                    </div>
+                    <div class="upload-text-premium">Arraste e Solte Sua Imagem Aqui</div>
+                    <div class="upload-hint-premium">Clique para selecionar (Formatos: JPG, PNG, WEBP • Máx: 15MB)</div>
+                </div>
+                <input type="file" id="fileInput" accept="image/*">
+            </div>
+
+            <div class="editor-section" id="editor">
+                <div class="editor-container">
+                    <div class="image-preview-container">
+                        <div class="canvas-container-premium">
+                            <canvas id="canvas" width="500" height="500"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="controls-container">
+                        <div class="controls-section">
+                            <h3 class="controls-section-title">
+                                <i class="bi bi-sliders"></i>
+                                Controles de Edição
+                            </h3>
+
+                            <div class="presets-premium">
+                                <button class="preset-btn-premium" onclick="setShape(0)">
+                                    <i class="bi bi-circle"></i> Círculo
+                                </button>
+                                <button class="preset-btn-premium active" onclick="setShape(20)">
+                                    <i class="bi bi-circle-half"></i> Arredondado
+                                </button>
+                                <button class="preset-btn-premium" onclick="setShape(40)">
+                                    <i class="bi bi-square"></i> Médio
+                                </button>
+                                <button class="preset-btn-premium" onclick="setShape(60)">
+                                    <i class="bi bi-square-half"></i> Suave
+                                </button>
+                                <button class="preset-btn-premium" onclick="setShape(100)">
+                                    <i class="bi bi-square-fill"></i> Quadrado
+                                </button>
+                            </div>
+
+                            <div class="filters-section">
+                                <div class="filters-title">
+                                    <i class="bi bi-filter"></i>
+                                    Filtros Pré-definidos
+                                </div>
+                                <div class="filters-container">
+                                    <button class="filter-btn" onclick="applyFilter('normal')" data-tooltip="Original">
+                                        <div class="filter-preview" style="background: linear-gradient(135deg, #6c757d, #adb5bd);"></div>
+                                        <span>Original</span>
+                                    </button>
+                                    <button class="filter-btn" onclick="applyFilter('vintage')" data-tooltip="Efeito Vintage">
+                                        <div class="filter-preview" style="background: linear-gradient(135deg, #8b4513, #d2691e);"></div>
+                                        <span>Vintage</span>
+                                    </button>
+                                    <button class="filter-btn" onclick="applyFilter('grayscale')" data-tooltip="Preto e Branco">
+                                        <div class="filter-preview" style="background: linear-gradient(135deg, #333, #666);"></div>
+                                        <span>PB</span>
+                                    </button>
+                                    <button class="filter-btn" onclick="applyFilter('sepia')" data-tooltip="Tom Sépiado">
+                                        <div class="filter-preview" style="background: linear-gradient(135deg, #704214, #8b4513);"></div>
+                                        <span>Sépia</span>
+                                    </button>
+                                    <button class="filter-btn" onclick="applyFilter('vivid')" data-tooltip="Cores Vivas">
+                                        <div class="filter-preview" style="background: linear-gradient(135deg, #ff4081, #6c63ff);"></div>
+                                        <span>Vivido</span>
+                                    </button>
+                                    <button class="filter-btn" onclick="applyFilter('cool')" data-tooltip="Tons Frios">
+                                        <div class="filter-preview" style="background: linear-gradient(135deg, #00b4d8, #4361ee);"></div>
+                                        <span>Frio</span>
+                                    </button>
+                                    <button class="filter-btn" onclick="applyFilter('warm')" data-tooltip="Tons Quentes">
+                                        <div class="filter-preview" style="background: linear-gradient(135deg, #ff9e00, #ff4081);"></div>
+                                        <span>Quente</span>
+                                    </button>
+                                    <button class="filter-btn" onclick="applyFilter('dramatic')" data-tooltip="Contraste Alto">
+                                        <div class="filter-preview" style="background: linear-gradient(135deg, #000, #fff);"></div>
+                                        <span>Dramático</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="effects-bar">
+                                <button class="effect-btn-premium" id="rotateBtn" data-tooltip="Rotacionar 90°">
+                                    <i class="bi bi-arrow-clockwise"></i>
+                                </button>
+                                <button class="effect-btn-premium" id="bwBtn" data-tooltip="Preto e Branco">
+                                    <i class="bi bi-droplet-half"></i>
+                                </button>
+                                <button class="effect-btn-premium" id="mirrorBtn" data-tooltip="Espelhar">
+                                    <i class="bi bi-arrow-left-right"></i>
+                                </button>
+                                <button class="effect-btn-premium" id="invertBtn" data-tooltip="Inverter Cores">
+                                    <i class="bi bi-palette-fill"></i>
+                                </button>
+                            </div>
+
+                            <div class="control-group-premium">
+                                <label for="brightnessSlider">
+                                    Brilho
+                                    <span class="value-premium" id="brightnessValue">100%</span>
+                                </label>
+                                <div class="slider-row-premium">
+                                    <input type="range" id="brightnessSlider" min="0" max="200" value="100">
+                                </div>
+                            </div>
+
+                            <div class="control-group-premium">
+                                <label for="contrastSlider">
+                                    Contraste
+                                    <span class="value-premium" id="contrastValue">100%</span>
+                                </label>
+                                <div class="slider-row-premium">
+                                    <input type="range" id="contrastSlider" min="0" max="200" value="100">
+                                </div>
+                            </div>
+
+                            <div class="control-group-premium">
+                                <label for="saturationSlider">
+                                    Saturação
+                                    <span class="value-premium" id="saturationValue">100%</span>
+                                </label>
+                                <div class="slider-row-premium">
+                                    <input type="range" id="saturationSlider" min="0" max="200" value="100">
+                                </div>
+                            </div>
+
+                            <div class="control-group-premium">
+                                <label for="shapeSlider">
+                                    Suavidade dos Cantos
+                                    <span class="value-premium" id="shapeValue">Arredondado</span>
+                                </label>
+                                <div class="slider-row-premium">
+                                    <input type="range" id="shapeSlider" min="0" max="100" step="1" value="20">
+                                </div>
+                            </div>
+
+                            <div class="control-group-premium">
+                                <label for="zoomSlider">
+                                    Zoom
+                                    <span class="value-premium" id="zoomValue">1.0×</span>
+                                </label>
+                                <div class="slider-row-premium">
+                                    <input type="range" id="zoomSlider" min="0.5" max="3" step="0.1" value="1">
+                                </div>
+                            </div>
+
+                            <div class="control-group-premium">
+                                <label for="blurSlider">
+                                    Blur
+                                    <span class="value-premium" id="blurValue">0px</span>
+                                </label>
+                                <div class="slider-row-premium">
+                                    <input type="range" id="blurSlider" min="0" max="20" step="0.5" value="0">
+                                </div>
+                            </div>
+
+                            <div class="control-group-premium">
+                                <label for="sharpenSlider">
+                                    Nitidez
+                                    <span class="value-premium" id="sharpenValue">0</span>
+                                </label>
+                                <div class="slider-row-premium">
+                                    <input type="range" id="sharpenSlider" min="0" max="100" value="0">
+                                </div>
+                            </div>
+
+                            <div class="size-options-premium">
+                                <button class="size-btn-premium active" onclick="setSize(512)">
+                                    512×512px
+                                </button>
+                                <button class="size-btn-premium" onclick="setSize(256)">
+                                    256×256px
+                                </button>
+                                <button class="size-btn-premium" onclick="setSize(128)">
+                                    128×128px
+                                </button>
+                                <button class="size-btn-premium" onclick="setSize(64)">
+                                    64×64px
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="actions-premium">
+                            <button class="btn-premium btn-secondary-premium" onclick="resetImage()">
+                                <i class="bi bi-arrow-counterclockwise"></i>
+                                Reiniciar Tudo
+                            </button>
+                            <button class="btn-premium btn-primary-premium" onclick="downloadImage()">
+                                <i class="bi bi-download"></i>
+                                Baixar Imagem
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <input type="file" id="fileInput" accept="image/*">
-      </div>
-
-<div class="editor-section" id="editor">
-  <div class="editor-container">
-    <div class="image-preview-container">
-      <div class="canvas-container-premium">
-        <canvas id="canvas" width="500" height="500"></canvas>
-      </div>
     </div>
-    
-    <div class="controls-container">
-      <div class="controls-section">
-        <h3 class="controls-section-title">
-          <i class="bi bi-sliders"></i>
-          Controles de Edição
-        </h3>
 
-        <div class="presets-premium">
-          <button class="preset-btn-premium" onclick="setShape(0)">
-            <i class="bi bi-circle"></i> Círculo
-          </button>
-          <button class="preset-btn-premium active" onclick="setShape(20)">
-            <i class="bi bi-circle-half"></i> Arredondado
-          </button>
-          <button class="preset-btn-premium" onclick="setShape(40)">
-            <i class="bi bi-square"></i> Médio
-          </button>
-          <button class="preset-btn-premium" onclick="setShape(60)">
-            <i class="bi bi-square-half"></i> Suave
-          </button>
-          <button class="preset-btn-premium" onclick="setShape(100)">
-            <i class="bi bi-square-fill"></i> Quadrado
-          </button>
-        </div>
-
-
-        <div class="filters-section">
-          <div class="filters-title">
-            <i class="bi bi-filter"></i>
-            Filtros Pré-definidos
-          </div>
-          <div class="filters-container">
-            <button class="filter-btn" onclick="applyFilter('normal')" data-tooltip="Original">
-              <div class="filter-preview" style="background: linear-gradient(135deg, #6c757d, #adb5bd);"></div>
-              <span>Original</span>
-            </button>
-            <button class="filter-btn" onclick="applyFilter('vintage')" data-tooltip="Efeito Vintage">
-              <div class="filter-preview" style="background: linear-gradient(135deg, #8b4513, #d2691e);"></div>
-              <span>Vintage</span>
-            </button>
-            <button class="filter-btn" onclick="applyFilter('grayscale')" data-tooltip="Preto e Branco">
-              <div class="filter-preview" style="background: linear-gradient(135deg, #333, #666);"></div>
-              <span>PB</span>
-            </button>
-            <button class="filter-btn" onclick="applyFilter('sepia')" data-tooltip="Tom Sépiado">
-              <div class="filter-preview" style="background: linear-gradient(135deg, #704214, #8b4513);"></div>
-              <span>Sépia</span>
-            </button>
-            <button class="filter-btn" onclick="applyFilter('vivid')" data-tooltip="Cores Vivas">
-              <div class="filter-preview" style="background: linear-gradient(135deg, #ff4081, #6c63ff);"></div>
-              <span>Vivido</span>
-            </button>
-            <button class="filter-btn" onclick="applyFilter('cool')" data-tooltip="Tons Frios">
-              <div class="filter-preview" style="background: linear-gradient(135deg, #00b4d8, #4361ee);"></div>
-              <span>Frio</span>
-            </button>
-            <button class="filter-btn" onclick="applyFilter('warm')" data-tooltip="Tons Quentes">
-              <div class="filter-preview" style="background: linear-gradient(135deg, #ff9e00, #ff4081);"></div>
-              <span>Quente</span>
-            </button>
-            <button class="filter-btn" onclick="applyFilter('dramatic')" data-tooltip="Contraste Alto">
-              <div class="filter-preview" style="background: linear-gradient(135deg, #000, #fff);"></div>
-              <span>Dramático</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="effects-bar">
-          <button class="effect-btn-premium" id="rotateBtn" data-tooltip="Rotacionar 90°">
-            <i class="bi bi-arrow-clockwise"></i>
-          </button>
-          <button class="effect-btn-premium" id="bwBtn" data-tooltip="Preto e Branco">
-            <i class="bi bi-droplet-half"></i>
-          </button>
-          <button class="effect-btn-premium" id="mirrorBtn" data-tooltip="Espelhar">
-            <i class="bi bi-arrow-left-right"></i>
-          </button>
-          <button class="effect-btn-premium" id="invertBtn" data-tooltip="Inverter Cores">
-            <i class="bi bi-palette-fill"></i> 
-          </button>
-        </div>
-
-        <div class="control-group-premium">
-          <label for="brightnessSlider">
-            Brilho
-            <span class="value-premium" id="brightnessValue">100%</span>
-          </label>
-          <div class="slider-row-premium">
-            <input type="range" id="brightnessSlider" min="0" max="200" value="100">
-          </div>
-        </div>
-
-        <div class="control-group-premium">
-          <label for="contrastSlider">
-            Contraste
-            <span class="value-premium" id="contrastValue">100%</span>
-          </label>
-          <div class="slider-row-premium">
-            <input type="range" id="contrastSlider" min="0" max="200" value="100">
-          </div>
-        </div>
-
-        <div class="control-group-premium">
-          <label for="saturationSlider">
-            Saturação
-            <span class="value-premium" id="saturationValue">100%</span>
-          </label>
-          <div class="slider-row-premium">
-            <input type="range" id="saturationSlider" min="0" max="200" value="100">
-          </div>
-        </div>
-
-        <div class="control-group-premium">
-          <label for="shapeSlider">
-            Suavidade dos Cantos
-            <span class="value-premium" id="shapeValue">Arredondado</span>
-          </label>
-          <div class="slider-row-premium">
-            <input type="range" id="shapeSlider" min="0" max="100" step="1" value="20">
-          </div>
-        </div>
-
-        <div class="control-group-premium">
-          <label for="zoomSlider">
-            Zoom
-            <span class="value-premium" id="zoomValue">1.0×</span>
-          </label>
-          <div class="slider-row-premium">
-            <input type="range" id="zoomSlider" min="0.5" max="3" step="0.1" value="1">
-          </div>
-        </div>
-
-        <div class="control-group-premium">
-          <label for="blurSlider">
-            Blur
-            <span class="value-premium" id="blurValue">0px</span>
-          </label>
-          <div class="slider-row-premium">
-            <input type="range" id="blurSlider" min="0" max="20" step="0.5" value="0">
-          </div>
-        </div>
-
-        <div class="control-group-premium">
-          <label for="sharpenSlider">
-            Nitidez
-            <span class="value-premium" id="sharpenValue">0</span>
-          </label>
-          <div class="slider-row-premium">
-            <input type="range" id="sharpenSlider" min="0" max="100" value="0">
-          </div>
-        </div>
-
-        <div class="size-options-premium">
-          <button class="size-btn-premium active" onclick="setSize(512)">
-            512×512px
-          </button>
-          <button class="size-btn-premium" onclick="setSize(256)">
-            256×256px
-          </button>
-          <button class="size-btn-premium" onclick="setSize(128)">
-            128×128px
-          </button>
-          <button class="size-btn-premium" onclick="setSize(64)">
-            64×64px
-          </button>
-        </div>
-      </div>
-
-      <div class="actions-premium">
-        <button class="btn-premium btn-secondary-premium" onclick="resetImage()">
-          <i class="bi bi-arrow-counterclockwise"></i>
-          Reiniciar Tudo
-        </button>
-        <button class="btn-premium btn-primary-premium" onclick="downloadImage()">
-          <i class="bi bi-download"></i>
-          Baixar Imagem
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-    </div>
-  </div>
+    <script src="main.js"></script>
 </body>
-
-<script src="main.js"></script>
 </html>
